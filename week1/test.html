@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CS 4330</title>
+</head>
+
+<body>
+
+Welcome to CS 4330
+<br><br>
+<button onclick="howdy('Howdy! Howdy!')"> click </button>
+<br><br>
+<div id="output" ></div>
+
+<script>
+
+function howdy(greet) {
+    let s = "";
+    //let count = 0;
+    // while (count < 6) {
+    //     s += "Howdy!<br>";
+    //     count += 1;
+    // }
+    for (let count = 0; count < 6; count++ ){
+        s += (greet + "<br>");
+    }
+
+    document.getElementById("output").innerHTML = s;
+      //  "Howdy!<br>Howdy!";
+}
+
+</script>
+
+</body>
+
+</html>
