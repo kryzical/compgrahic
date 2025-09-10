@@ -54,13 +54,13 @@ draw_line(0,height/2,0,-height/2)
 draw_line(-width/2,0,width/2,0)
 
 function draw_point(x) {
-    context.fillRect(x[0],y[1],10,10);
+    context.fillRect(x[0],x[1],10,10);
 }
 
 let a = [0,0];
 let b = [100,0];
 let c = [100,100];
-let d = [0,3];
+let d = [0,100];
 
 draw_point(a);
 draw_point(b);
