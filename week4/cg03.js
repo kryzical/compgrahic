@@ -136,4 +136,7 @@ function draw_rotate(deg,a,b,c,d) {
 }
 
 draw_rotate(45,1,2,3,5);
+draw_rotate(-45,1,2,3,5);
+draw_rotate(45,1,2,3,5);
+
 
