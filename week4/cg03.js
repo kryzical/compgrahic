@@ -80,8 +80,7 @@ function getR(alpha) {
 }
 
 function math_vec_dot_2d(M,v) {
-    return [M[0][0]*v[0]+M[0][1]*v[1],
-            M[1][0]*v[0]+M[1][1]*v[1]];
+    return [M[0][0]*v[0]+M[0][1]*v[1], M[1][0]*v[0]+M[1][1]*v[1]];
 }
 
 // S is a scale matrix entries
@@ -90,13 +89,13 @@ function scale(S,X) {
 // //    console.log(S);
 //     return XX = [S[0][0]*X[0]+S[0][1]*X[1],
 //                  S[1][0]*X[0]+S[1][1]*X[1]];
-    return mat_vec_doc_2d(S,X);
+    return math_vec_dot_2d(S,X);
 }
 
 // alpha in degrees
 function rotate(alpha,X) {
     let R = getR(alpha);
-    return mat_vec_dot_2d(R,X);
+    return math_vec_dot_2d(R,X);
 }
 
 const S1 = [
@@ -121,7 +120,7 @@ function draw_quad(a,b,c,d){
     draw_line(a[0],a[1],b[0],b[1]);
     draw_line(b[0],b[1],c[0],c[1]);
     draw_line(c[0],c[1],d[0],d[1]);
-    draw_line(d[0],d,[1],a[0],a[1]);
+    draw_line(d[0],d[1],a[0],a[1]);
 }
 
 draw_quad(a,b,c,d);
@@ -135,8 +134,6 @@ function draw_rotate(deg,a,b,c,d) {
     draw_quad(a_r,b_r,c_r,d_r);
 }
 
-draw_rotate(45,1,2,3,5);
-draw_rotate(-45,1,2,3,5);
-draw_rotate(45,1,2,3,5);
-
-
+// rotate and draw the original quad
+for (let deg=0; deg<360; deg += 5)
+    draw_rotate(deg,a,b,c,d);
