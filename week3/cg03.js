@@ -50,6 +50,8 @@ function draw_line(x1,y1,x2,y2){
     context.stroke();
 }
 
+
+
 draw_line(0,height/2,0,-height/2)
 draw_line(-width/2,0,width/2,0)
 
