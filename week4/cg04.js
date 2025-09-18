@@ -26,7 +26,7 @@ house_coords = [
      [2,6,1],
      [4,6,1],
      [8,0,1],
-     [-1,8,0],
+     [-1,8,1],
      [0,10,1],
      [9,8,1],
      [8,10,1],
@@ -54,18 +54,24 @@ function draw_house(C) {
 }
 
 let S1 = get_scale_3d(10,5);
-let T1 = get_translate_3d(10,20);
-let TT = mat_mat_mul_3d(T1,S1);
+let Translate = get_translate_3d(25,190);
+let TS = mat_mat_mul_3d(Translate,S1);
+let convert = deg_to_rad(180);
+let RT = rotate_3d(convert);
 
+// multiples from right to left 
+let TSR = mat_mat_mul_3d(Translate, mat_mat_mul_3d(RT,S1));
+
+// this thing will take our house coords and apply the transformed matrix to it 
 function transform_house(M) {
      let new_house = [];
-     for (let i = 0; i < 15; i++) {
-          new_house.push(mat_vec_mul_3d(S,house_coords[i]));
+     for (let i = 0; i < house_coords.length; i++) {
+          new_house.push(mat_vec_mul_3d(M, house_coords[i]));
      }
      draw_house(new_house);
 }
 
-transform_house(TT);
+transform_house(TSR);
 
 // function scale_house(S) {
 //      let new_house = [];
