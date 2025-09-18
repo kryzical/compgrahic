@@ -6,6 +6,14 @@ function get_scale_3d(Sx,Sy) {
   ];
 }
 
+function get_translate_3d(Tx,Ty) {
+  return [
+    [1, 0, Tx],
+    [0, 1, Ty],
+    [0, 0, 1]
+  ];
+}
+
 //
 // M1 = [ 
 //       [a_11, a_12, a_13],

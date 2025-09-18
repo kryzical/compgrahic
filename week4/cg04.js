@@ -53,15 +53,27 @@ function draw_house(C) {
      draw_line(C[13],C[14]);
 }
 
-let S1 = get_scale_3d(20,10);
+let S1 = get_scale_3d(10,5);
+let T1 = get_translate_3d(10,20);
+let TT = mat_mat_mul_3d(T1,S1);
 
-function scale_house(S) {
+function transform_house(M) {
      let new_house = [];
      for (let i = 0; i < 15; i++) {
           new_house.push(mat_vec_mul_3d(S,house_coords[i]));
      }
      draw_house(new_house);
-
 }
 
-scale_house(S1);
+transform_house(TT);
+
+// function scale_house(S) {
+//      let new_house = [];
+//      for (let i = 0; i < 15; i++) {
+//           new_house.push(mat_vec_mul_3d(S,house_coords[i]));
+//      }
+//      draw_house(new_house);
+
+// }
+
+// scale_house(S1);
