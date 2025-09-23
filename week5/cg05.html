@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>CG 05</h2>
+
+<input type="text" size="20" id="color_display"
+    style="background-color:black;height:100px" readonly>
+
+<br><br><br><br>
+<b>R</b>
+<input type="range" id="slider_r" 
+    value="0"
+    min="0" max="255"    
+    oninput="update_colors()">
+<input id="rt"type="text" maxlength="3" size="3" value="0" readonly>
+<br></br>
+<b>G</b><input type="range" id="slider_g" 
+    value="0"
+    min="0" max="255"   
+    oninput="update_colors()">
+<input id="gt"type="text" maxlength="3" size="3" value="0" readonly>
+<br></br>
+<b>B</b><input type="range" id="slider_b"
+    value="0"
+    min="0" max="255"   
+    oninput="update_colors()">
+<input id="bt"type="text" maxlength="3" size="3" value="0" readonly>
+
+
+
+
+<script>
+    function update_colors() {
+        let rval = document.getElementById("slider_r").value;
+        document.getElementById("rt").value = rval;
+        let gval = document.getElementById("slider_g").value;
+        document.getElementById("gt").value = gval;
+        let bval = document.getElementById("slider_b").value;
+        document.getElementById("bt").value = bval;
+
+        let rgb_color = 
+        "rgb(" + rval + "," + gval + "," + bval + ")";
+        console.log(rgb_color);
+        let cd = document.getElementById("color_display");
+        cd.style.backgroundColor = rgb_color;
+    }
+</script>
+
+</body>
+</html>
