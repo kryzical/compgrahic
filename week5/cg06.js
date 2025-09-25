@@ -1,23 +1,25 @@
+
 "use strict";
 
 // vertex shader code (vsc)
-const vsc = "attribute vec4 pos;" + 
+const vsc = "attribute vec4 pos;" +
 "void main() {" +
 "gl_Position = pos;" +
 "}";
 
 // fragment shader code (fsc)
-const fsc = "precision mediump float;" + 
-"void main() {" + 
-" gl_FragColor = vec4(1,0,.5,1);" +
+const fsc = "precision mediump float;" +
+"void main() {" +
+"gl_FragColor = vec4(1,0,.5,1);" +
 "}";
 
-const pos1 = [-.25,-.5,.25,-.5,0,.5];
-
+const pos1 = [-.5, -.5, 0, -.5, -.25, .5];
+const pos2 = [0, -.5, .5, -.5, .25, .5];
 
 let gl;
 let gl_prog;
 let canvas;
+const N_DIM = 2;
 
 function create_gl_program() {
     let vs = gl.createShader(gl.VERTEX_SHADER);
@@ -37,22 +39,25 @@ function init_gl() {
     gl = canvas.getContext("webgl");
     create_gl_program();
     gl.useProgram(gl_prog);
+    
     gl.clearColor(0,0,0,1);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.clear(gl.COLOR_BUFFER_BIT);    
 
-    let vertex_buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, pos1, gl.STREAM_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
     let attr_pos = gl.getAttribLocation(gl_prog, "pos");
+    gl.vertexAttribPointer(attr_pos, N_DIM, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(attr_pos);
-    gl.drawArrays(gl.TRIANGLES,0,3);
+}
 
+function draw_triangle(pos) {   
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos), gl.STATIC_DRAW);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
 function main() {
     init_gl();
-
+    draw_triangle(pos1);
+    draw_triangle(pos2);
 }
 
 main();
-
