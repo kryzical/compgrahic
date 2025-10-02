@@ -77,7 +77,10 @@ function draw_circle() {
 
 function main() {
     init_gl();
-    draw_circle();
+    for (let i = 0; i < 30; i++) {
+        draw_circle();
+    }
+    
 }
 
 main();
