@@ -87,14 +87,16 @@ function draw_random_lines() {
         gl.uniform4f(unif_vcolor, randomf(0,1), randomf(0,1), randomf(0,1), 1);
         draw_line(vertices);
 
+
+
     }
 }
 
 function main() {
     init_gl();
 
-    let vertices1 = [-.25,-.25,1, .6,.8,1];
-    let vertices2 = [-.25, -.25,1, .5,.3,1, .6,.8,.1]
+    // let vertices1 = [-.25,-.25,1, .6,.8,1];
+    // let vertices2 = [-.25, -.25,1, .5,.3,1, .6,.8,.1]
     //draw_lines(vertices2);
     draw_random_lines();
 }
