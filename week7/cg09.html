@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>CG 09</h1>
+
+<table>
+    <tr valign="top">
+    <td>
+<canvas id="webgl_canvas" width="700" height="700"></canvas> 
+    </td>
+    <td>
+    <b>Scale</b>
+    <br>
+    <input id="scale" type="range" oninput="transform(this)">
+    <br><br>
+    <b>Rotate</b>
+    <br>
+    <input id="rotate" type="range" min="-360"
+    max="360" oninput="transform(this)">
+    </td>
+</tr>
+
+</table>
+<script type="text/javascript" src="util.js"></script>
+<script type="text/javascript" src="cg09.js"></script>
+</body>
+</htmL>
