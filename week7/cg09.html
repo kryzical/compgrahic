@@ -9,9 +9,19 @@
 <canvas id="webgl_canvas" width="700" height="700"></canvas> 
     </td>
     <td>
-        <b>Scale</b>
+        <b>Scale X</b>
         <br>
-        <input id="scale" type="range" oninput="transform(this)">
+        <input id="scalex" type="range" 
+        min="0" max="10" value="1" step=".1"
+        oninput="transform(this);this.nextElementSibling.value=this.value">
+        <output>1</output>
+    <br><br>
+    <b>Scale Y</b>
+        <br>
+        <input id="scaley" type="range" 
+        min="0" max="10" value="1" step=".1"
+        oninput="transform(this);this.nextElementSibling.value=this.value">
+        <output>1</output>
     <br><br>
         <b>Rotate</b>
         <br>

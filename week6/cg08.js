@@ -53,7 +53,7 @@ function init_gl() {
 function draw_circle() {
 
     let r = randomf(.1,.9);
-    let inc = 1;
+    let inc = randomf(1,40);
     let rx = randomf(-1,1);
     let ry = randomf(-1,1);
 
@@ -72,7 +72,7 @@ function draw_circle() {
     gl.uniform4f(unif_vcolor, randomf(0,1), randomf(0,1), randomf(0,1), 1);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
     gl.drawArrays(gl.LINE_LOOP, 0, 360/inc);
-    console.log(vertices);
+    console.log(vertices)
 }
 
 function main() {

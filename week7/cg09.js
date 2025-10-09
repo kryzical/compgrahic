@@ -6,6 +6,8 @@ const vsc = "attribute vec2 vpos;" +
 "gl_Position = vec4(vpos, 0.0, 1.0);" +
 "}";
 
+
+
 // fragment shader code (fsc)
 const fsc = "precision lowp float;" + 
 "uniform vec4 vcolor;" + 
@@ -28,7 +30,7 @@ const xy_axis = [
     [0,1,1, 0,-1,1]  // y  
 ];
 
-
+let magenta_color = [1,0,1];
 
 let gl;
 let gl_prog;
@@ -68,14 +70,40 @@ function init_gl() {
 
 function transform(input) {
     switch(input.id) {
-        case "scale" : 
-            console.log(input.value);
+        case "scalex" : 
+            console.log("scalex:", input.value);
+            let tsxhouse = do_transform(house,get_scale_3d(input.value,1))
+            // way to clear the screen
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            draw_xy_axis()
+            draw_house(tsxhouse,magenta_color)
+            break;
+        case "scaley" : 
+            console.log("scaley:", input.value);
+            let tsyhouse = do_transform(house,get_scale_3d(1,input.value))
+            // way to clear the screen
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            draw_xy_axis()
+            draw_house(tsyhouse,magenta_color)
             break;
         case "rotate" :
             console.log(input.value);
             break;
     }
-    
+}
+
+function do_transform(vertices,T) {
+    let v, tmp;
+    let tvertices = [];
+    for (let i = 0; i < vertices.length; ++i) {
+        tmp = [];
+        for (let j=0; j<vertices[i].length; j += N_DIM) {
+            v = [vertices[i][j], vertices[i][j+1], vertices[i][j+2]];
+            tmp = tmp.concat(mat_vec_mul_3d(T,v));
+        }
+        tvertices.push(tmp);
+    }
+    return tvertices;
 }
 
 function draw_line(vertices) {
@@ -92,13 +120,14 @@ function draw_house(vertices,color) {
     }
 }
 
-function draw_xy_axis() {
+function draw_xy_axis(color) {
+    gl.uniform4f(unif_vcolor,1,1,1,1);
     draw_line(xy_axis[0]);
     draw_line(xy_axis[1]);
 }
 
 function main() {
-    let magenta_color = [1,0,1];
+    
     init_gl();
     draw_xy_axis();
     draw_house(house,magenta_color);
